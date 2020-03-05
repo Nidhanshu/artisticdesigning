@@ -1,0 +1,18 @@
+# php -- BEGIN cPanel-generated handler, do not edit
+# NOTE this account's php is controlled via FPM and the vhost, this is a place holder.
+# Do not edit. This next line is to support the cPanel php wrapper (php_cli).
+# AddType application/x-httpd-ea-php56 .php .phtml
+# php -- END cPanel-generated handler, do not edit
+
+# 1 ---- Establish a custom 404 File not Found page ----
+
+ErrorDocument 404 /new%20design/filenotfound.php
+
+# 2 ---- Prevent directory file listing in all of your folders ----
+
+IndexIgnore *
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
